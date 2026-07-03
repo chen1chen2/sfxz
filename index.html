@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Civil and Commercial Judicial Assistance System - Login</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #1b1b1b;
+      background: #fff;
+    }
+
+    body {
+      min-width: 1240px;
+      overflow-x: auto;
+    }
+
+    .page {
+      position: relative;
+      min-height: 100vh;
+      background: #fff;
+    }
+
+    .language {
+      position: absolute;
+      top: 25px;
+      left: 30px;
+      z-index: 2;
+      font-size: 14px;
+      line-height: 1;
+      color: #d0d0d0;
+      user-select: none;
+    }
+
+    .language strong {
+      color: #222;
+      font-weight: 700;
+    }
+
+    .language span {
+      display: inline-block;
+      margin: 0 10px;
+      color: #e6e6e6;
+    }
+
+    .login-area {
+      width: calc(100% - 636px);
+      min-height: 760px;
+      padding-top: 119px;
+    }
+
+    .login-box {
+      width: 900px;
+      margin-left: 384px;
+    }
+
+    h1 {
+      margin: 0 0 84px;
+      font-size: 30px;
+      line-height: 1;
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+
+    .field {
+      display: block;
+      position: relative;
+      width: 900px;
+      height: 60px;
+      margin-bottom: 21px;
+      border: 1px solid #d9d9d9;
+      background: #fff;
+      border-radius: 2px;
+      overflow: hidden;
+    }
+
+    .field::before {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      width: 18px;
+      transform: translateY(-50%);
+      color: #e1e1e1;
+      font-size: 17px;
+      line-height: 1;
+      text-align: center;
+    }
+
+    .field.email::before {
+      content: "✉";
+      font-size: 16px;
+    }
+
+    .field.password::before {
+      content: "🔒";
+      filter: grayscale(1);
+      opacity: .42;
+      font-size: 15px;
+    }
+
+    .field.code::before {
+      content: "⬟";
+      color: #dedede;
+      font-size: 18px;
+    }
+
+    .field.mail-code::before {
+      content: "#";
+      font-weight: 700;
+      color: #dedede;
+      font-size: 18px;
+    }
+
+    .field input {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border: 0;
+      outline: 0;
+      padding: 0 20px 0 36px;
+      font-size: 14px;
+      color: #2b2b2b;
+      background: transparent;
+    }
+
+    .field input::placeholder {
+      color: #c9c9c9;
+    }
+
+    .field.code input {
+      padding-right: 205px;
+    }
+
+    .captcha {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 192px;
+      height: 59px;
+      object-fit: cover;
+      border-left: 1px solid #eeeeee;
+    }
+
+    .forgot-row {
+      width: 900px;
+      margin-top: 20px;
+      text-align: right;
+    }
+
+    .forgot-row a {
+      color: #0d1d4a;
+      font-size: 13px;
+      line-height: 1;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .submit {
+      width: 900px;
+      height: 60px;
+      margin-top: 40px;
+      border: 0;
+      border-radius: 1px;
+      background: #101d4a;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      letter-spacing: .2px;
+      cursor: pointer;
+    }
+
+    .submit:active {
+      transform: translateY(1px);
+    }
+
+    .submit.secondary {
+      margin-top: 22px;
+    }
+
+    .submit:disabled,
+    .outline-btn:disabled {
+      cursor: not-allowed;
+      opacity: .62;
+    }
+
+    .signup-row {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 14px;
+      width: 900px;
+      margin-top: 43px;
+      color: #b8bdc8;
+      font-size: 13px;
+    }
+
+    .outline-btn {
+      min-width: 70px;
+      height: 29px;
+      padding: 0 13px;
+      border: 1px solid #0f1d4d;
+      background: #fff;
+      color: #777f96;
+      font-size: 12px;
+      line-height: 27px;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 1px;
+    }
+
+    button.outline-btn {
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    .verify-view,
+    .home-view {
+      display: none;
+    }
+
+    .login-box[data-view="verify"] .login-view,
+    .login-box[data-view="home"] .login-view {
+      display: none;
+    }
+
+    .login-box[data-view="verify"] .verify-view,
+    .login-box[data-view="home"] .home-view {
+      display: block;
+    }
+
+    .notice {
+      width: 900px;
+      margin: -45px 0 46px;
+      color: #777f96;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .notice strong {
+      color: #101d4a;
+      font-weight: 700;
+    }
+
+    .verify-actions {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 900px;
+      margin-top: 2px;
+    }
+
+    .verify-meta {
+      color: #aeb5c1;
+      font-size: 13px;
+    }
+
+    .message {
+      min-height: 20px;
+      margin: 17px 0 0;
+      color: #d93025;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .message.success {
+      color: #1c7f3d;
+    }
+
+    .home-card {
+      width: 900px;
+      padding: 30px 32px;
+      border: 1px solid #e2e5ec;
+      background: #fff;
+      color: #3c4458;
+    }
+
+    .home-card h2 {
+      margin: 0 0 14px;
+      color: #101d4a;
+      font-size: 24px;
+      font-weight: 700;
+    }
+
+    .home-card p {
+      margin: 0;
+      color: #8d95a6;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .hero {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 636px;
+      height: 1024px;
+      max-height: 100vh;
+      background: #2630bc url("assets/login-hero.png") center top / cover no-repeat;
+    }
+
+    @media (max-width: 1600px) {
+      .login-area {
+        width: calc(100% - 500px);
+      }
+
+      .login-box {
+        margin-left: 210px;
+      }
+
+      .hero {
+        width: 500px;
+      }
+    }
+
+    @media (max-width: 1240px) {
+      .login-area {
+        width: 740px;
+      }
+
+      .login-box {
+        width: 620px;
+        margin-left: 70px;
+      }
+
+      .field,
+      .forgot-row,
+      .submit,
+      .signup-row,
+      .notice,
+      .verify-actions,
+      .home-card {
+        width: 620px;
+      }
+
+      .hero {
+        width: 500px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <nav class="language" aria-label="Language">
+      <strong>English</strong><span>|</span>Русский<span>|</span>Français
+    </nav>
+
+    <section class="login-area" aria-label="Login form">
+      <form class="login-box" data-view="login" id="authForm" novalidate>
+        <div class="login-view">
+          <h1>LOG IN</h1>
+
+          <label class="field email">
+            <input id="email" type="email" placeholder="Email address" aria-label="Email address" autocomplete="email">
+          </label>
+
+          <label class="field password">
+            <input id="password" type="password" placeholder="Password" aria-label="Password" autocomplete="current-password">
+          </label>
+
+          <label class="field code">
+            <input id="imageCode" type="text" placeholder="Verification code" aria-label="Verification code">
+            <img class="captcha" src="assets/captcha.png" alt="Verification code">
+          </label>
+
+          <div class="forgot-row">
+            <a href="#">Forgot Password?</a>
+          </div>
+
+          <p class="message" id="loginMessage" aria-live="polite"></p>
+
+          <button class="submit" id="loginButton" type="submit">LOG IN</button>
+
+          <div class="signup-row">
+            <span>Don't have an account?</span>
+            <a class="outline-btn" href="#">SIGN UP</a>
+            <a class="outline-btn" href="#">About Us</a>
+          </div>
+        </div>
+
+        <div class="verify-view">
+          <h1>EMAIL CODE</h1>
+
+          <p class="notice">
+            A verification code has been sent to <strong id="sentEmail">u***r@example.com</strong>.<br>
+            The email verification code is valid for 5 minutes.
+          </p>
+
+          <label class="field mail-code">
+            <input id="mailCode" type="text" inputmode="numeric" maxlength="6" placeholder="Email verification code" aria-label="Email verification code">
+          </label>
+
+          <div class="verify-actions">
+            <span class="verify-meta" id="codeMeta">Prototype code: 000000</span>
+            <button class="outline-btn" id="sendCodeButton" type="button">Send code</button>
+          </div>
+
+          <p class="message" id="verifyMessage" aria-live="polite"></p>
+
+          <button class="submit secondary" id="verifyButton" type="button">VERIFY AND LOG IN</button>
+        </div>
+
+        <div class="home-view">
+          <h1>SYSTEM HOME</h1>
+          <div class="home-card">
+            <h2>Login successful</h2>
+            <p>Welcome to the Civil and Commercial Judicial Assistance System. The verified email code has been marked as used and cannot be used again.</p>
+          </div>
+        </div>
+      </form>
+    </section>
+
+    <aside class="hero" aria-label="Civil and commercial judicial assistance system"></aside>
+  </main>
+
+  <script>
+    const authForm = document.getElementById("authForm");
+    const emailInput = document.getElementById("email");
+    const passwordInput = document.getElementById("password");
+    const imageCodeInput = document.getElementById("imageCode");
+    const mailCodeInput = document.getElementById("mailCode");
+    const loginMessage = document.getElementById("loginMessage");
+    const verifyMessage = document.getElementById("verifyMessage");
+    const sentEmail = document.getElementById("sentEmail");
+    const codeMeta = document.getElementById("codeMeta");
+    const sendCodeButton = document.getElementById("sendCodeButton");
+    const verifyButton = document.getElementById("verifyButton");
+
+    const USED_CODES_KEY = "judicial-assistance-used-email-codes";
+    const CODE_TTL_MS = 5 * 60 * 1000;
+    const RESEND_SECONDS = 60;
+
+    let currentEmail = "";
+    let currentEmailCode = "";
+    let issuedAt = 0;
+    let countdownTimer = null;
+    let expiryTimer = null;
+
+    function getUsedCodes() {
+      try {
+        return JSON.parse(localStorage.getItem(USED_CODES_KEY)) || [];
+      } catch (error) {
+        return [];
+      }
+    }
+
+    function saveUsedCode(email, code) {
+      const usedCodes = getUsedCodes();
+      usedCodes.push(`${email.toLowerCase()}|${code}`);
+      localStorage.setItem(USED_CODES_KEY, JSON.stringify(usedCodes));
+    }
+
+    function hasUsedCode(email, code) {
+      return getUsedCodes().includes(`${email.toLowerCase()}|${code}`);
+    }
+
+    function setMessage(element, text, type = "error") {
+      element.textContent = text;
+      element.classList.toggle("success", type === "success");
+    }
+
+    function isValidEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    function maskEmail(email) {
+      const [name, domain] = email.split("@");
+
+      if (!name || !domain) {
+        return email;
+      }
+
+      if (name.length <= 2) {
+        return `${name.slice(0, 1)}***@${domain}`;
+      }
+
+      if (name.length <= 6) {
+        return `${name.slice(0, 1)}***${name.slice(-1)}@${domain}`;
+      }
+
+      return `${name.slice(0, 3)}***${name.slice(-2)}@${domain}`;
+    }
+
+    function generateEmailCode() {
+      return String(Math.floor(100000 + Math.random() * 900000));
+    }
+
+    function startCountdown() {
+      let secondsLeft = RESEND_SECONDS;
+      sendCodeButton.disabled = true;
+      sendCodeButton.textContent = `${secondsLeft}s`;
+      clearInterval(countdownTimer);
+
+      countdownTimer = setInterval(() => {
+        secondsLeft -= 1;
+        if (secondsLeft <= 0) {
+          clearInterval(countdownTimer);
+          sendCodeButton.disabled = false;
+          sendCodeButton.textContent = "Send code";
+          return;
+        }
+        sendCodeButton.textContent = `${secondsLeft}s`;
+      }, 1000);
+    }
+
+    function startExpiryTimer() {
+      clearTimeout(expiryTimer);
+      expiryTimer = setTimeout(() => {
+        currentEmailCode = "";
+        setMessage(verifyMessage, "The email verification code has expired. Please send a new code.");
+      }, CODE_TTL_MS);
+    }
+
+    function sendEmailCode() {
+      currentEmailCode = generateEmailCode();
+      issuedAt = Date.now();
+      codeMeta.textContent = `Prototype code: ${currentEmailCode}`;
+      mailCodeInput.value = "";
+      setMessage(verifyMessage, "A new verification code has been sent.", "success");
+      startCountdown();
+      startExpiryTimer();
+    }
+
+    authForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const email = emailInput.value.trim();
+      const password = passwordInput.value.trim();
+      const imageCode = imageCodeInput.value.trim();
+
+      if (!isValidEmail(email)) {
+        setMessage(loginMessage, "Please enter a valid email address.");
+        emailInput.focus();
+        return;
+      }
+
+      if (!password) {
+        setMessage(loginMessage, "Please enter your password.");
+        passwordInput.focus();
+        return;
+      }
+
+      if (!imageCode) {
+        setMessage(loginMessage, "Please enter the image verification code.");
+        imageCodeInput.focus();
+        return;
+      }
+
+      currentEmail = email;
+      sentEmail.textContent = maskEmail(email);
+      authForm.dataset.view = "verify";
+      setMessage(loginMessage, "");
+      sendEmailCode();
+      mailCodeInput.focus();
+    });
+
+    sendCodeButton.addEventListener("click", sendEmailCode);
+
+    verifyButton.addEventListener("click", () => {
+      const code = mailCodeInput.value.trim();
+      const isExpired = !issuedAt || Date.now() - issuedAt > CODE_TTL_MS;
+
+      if (!code) {
+        setMessage(verifyMessage, "Please enter the email verification code.");
+        mailCodeInput.focus();
+        return;
+      }
+
+      if (isExpired) {
+        setMessage(verifyMessage, "The email verification code has expired. Please send a new code.");
+        return;
+      }
+
+      if (hasUsedCode(currentEmail, code)) {
+        setMessage(verifyMessage, "This email verification code has already been used.");
+        return;
+      }
+
+      if (code !== currentEmailCode) {
+        setMessage(verifyMessage, "Verification code is incorrect.");
+        return;
+      }
+
+      saveUsedCode(currentEmail, code);
+      clearInterval(countdownTimer);
+      clearTimeout(expiryTimer);
+      setMessage(verifyMessage, "Login successful.", "success");
+      authForm.dataset.view = "home";
+    });
+  </script>
+</body>
+</html>

@@ -66,6 +66,71 @@
 
 1. 用户通过基础校验后，系统自动发送邮箱验证码。
 2. ***页面展示“已向邮箱发送验证码”，例如 `a***g@example.com`。***
+   1. 邮箱内容：
+
+      1. 法语：
+         ```
+         Bienvenue sur le système d'entraide judiciaire en matière civile et commerciale !
+         Votre code de vérification est %s.
+         Centre international de coopération juridique (ILCC)
+         ----------------------------------------------------------------------------------------------------------------------------------------------------
+         À propos de nous :
+         Le Ministère de la Justice de la République populaire de Chine est l'Autorité centrale chinoise désignée par le gouvernement chinois pour mettre en œuvre la Convention de La Haye sur la signification, la Convention de La Haye sur l'obtention des preuves et 38 traités d'entraide judiciaire en matière civile et commerciale. Actuellement, le Centre international de coopération juridique (ILCC), placé sous l'égide du Ministère de la Justice, exerce les fonctions d'Autorité centrale chargée de l'entraide judiciaire en matière civile et commerciale.
+         Ses principales fonctions sont les suivantes :
+         Recevoir, examiner, transmettre et répondre aux diverses demandes d'entraide judiciaire en matière civile et commerciale, et assurer la coordination et la communication avec la partie requérante étrangère et les services exécutifs chinois pendant l'exécution des demandes.
+         Participer aux négociations des traités d'entraide judiciaire en matière civile et commerciale et des conventions connexes.
+         Assister aux réunions d'examen de la mise en œuvre des conventions pertinentes.
+         Entretenir des échanges et coopérer avec les autorités centrales de divers pays pour les affaires judiciaires civiles et commerciales.
+         Fournir des services de traduction en chinois (payants) sur demande.
+         Nous contacter
+         Adresse : 41A, Avenue Ouest de Ping’anli, District de Xicheng, Beijing, 100035, Chine
+         Tél. : +86 10 6515 2763
+         Fax : +86 10 6515 2773
+         ```
+   2. 俄语：
+
+      ```
+      Добро пожаловать в Систему правовой помощи по гражданским и торговым делам!
+      Ваш код подтверждения: %s.
+      Центр международного правового сотрудничества (International Legal Cooperation Center, ILCC)
+      ----------------------------------------------------------------------------------------------------------------------------------------------------
+      О нас:
+      Министерство юстиции Китайской Народной Республики является Центральным органом Китайской Народной Республики, назначенным Правительством Китая для выполнения функций по применению Гаагской конвенции о вручении за границей судебных и внесудебных документов по гражданским или торговым делам, Гаагской конвенции о получении за границей доказательств по гражданским или торговым делам, а также 38 договоров о правовой помощи по гражданским и торговым делам. В настоящее время Центр международного правового сотрудничества (International Legal Cooperation Center, ILCC) при Министерстве юстиции осуществляет функции Центрального органа по вопросам правовой помощи по гражданским и торговым делам.
+      К основным функциям относятся:
+      прием, рассмотрение, направление и исполнение различных запросов о правовой помощи по гражданским и торговым делам, а также координация и взаимодействие с иностранной запрашивающей стороной и компетентными органами Китая в ходе исполнения таких запросов; 
+      Участие в переговорах по заключению договоров и соответствующих конвенций о правовой помощи по гражданским и коммерческим делам.
+      Участие в переговорах по договорам о правовой помощи по гражданским и торговым делам и соответствующим конвенциям; участие в заседаниях по вопросам рассмотрения исполнения соответствующих конвенций; 
+      Осуществление обменов и сотрудничества с центральными органами различных государств по вопросам гражданских и торговых дел; 
+      Оказание платных услуг по переводу на китайский язык по запросу.
+      Контактная информация
+      Адрес: 100035 Китай, Пекин, район Сичэн ул. Пинъаньли Сидацзе, д. 41А 
+      Тел.: +86 10 6515 2763
+      Факс: +86 10 6515 2773
+
+      ```
+   3. 英语
+
+      ```
+      Welcome to log in to the Civil and Commercial Judicial Assistance System! 
+      Your verification code is %s.
+
+      International Legal Cooperation Center (ILCC)
+      ----------------------------------------------------------------------------------------------------------------------------------------------------
+            About us：
+      The Ministry of Justice of the People's Republic of China is the Central Authority of China designated by the Chinese government to implement the Hague Service Convention, the Hague Evidence Convention and 38 civil and commercial judicial assistance treaties. At present, the International Legal Cooperation Center(ILCC) under the Ministry of Justice performs the functions of the Central Authority in charge of judicial assistance in civil and commercial matters.
+       
+            Main functions include:
+        Receiving, reviewing, transmitting and responding to various civil and commercial judicial assistance requests, and coordinating and communicating with the foreign requesting party and Chinese executive departments during the execution of the requests.
+         Participating in the negotiation of civil and commercial judicial assistance treaties and related conventions.
+           Attending the relevant convention performance review meetings.
+          Carrying out exchanges and cooperating with the central authorities of various countries for civil and commercial judicial matters.
+          Providing (paid) Chinese translation services per requested.
+            Contact us
+      Address: No. 41A, PingAnLi West Ave., Xicheng District, Beijing 100035, China
+      Tel: +86 10 6515 2763
+      Fax: +86 10 6515 2773
+
+      ```
 3. `Send code` 按钮禁用并显示 `60s` 倒计时。
 4. 倒计时结束后按钮恢复可点击。
 5. 用户点击重新发送后，生成新验证码并重新进入 60 秒倒计时。
